@@ -8,7 +8,7 @@ This project provides a REST API to retrieve weather information for a specific 
 1. Clone the repository:
 
    ```
-   git clone [https://github.com/your-username/your-repo.git](https://github.com/lakshaysangwan/weather-for-pincode.git)
+   git clone https://github.com/lakshaysangwan/weather-for-pincode.git
    ```
 
 2. Import the project into your preferred IDE (e.g., IntelliJ, Eclipse).
