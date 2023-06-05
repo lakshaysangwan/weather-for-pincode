@@ -8,7 +8,7 @@ This project provides a REST API to retrieve weather information for a specific 
 1. Clone the repository:
 
    ```
-   git clone https://github.com/your-username/your-repo.git
+   git clone [https://github.com/your-username/your-repo.git](https://github.com/lakshaysangwan/weather-for-pincode.git)
    ```
 
 2. Import the project into your preferred IDE (e.g., IntelliJ, Eclipse).
@@ -34,7 +34,14 @@ This project provides a REST API to retrieve weather information for a specific 
 #### Request
 
 ```
-GET /weather?pincode=411014&for_date=2020-10-15
+POST /weather
+Content-Type: application/json
+
+{
+  "pincode": 122002,
+  "for_date": "2020-10-15"
+}
+
 ```
 
 Parameters:
@@ -45,72 +52,75 @@ Parameters:
 
 ```json
 {
-  "status": "success",
-  "data": {
-    "pincode": "411014",
-    "latitude": 18.5204,
-    "longitude": 73.8567,
-    "weather": {
-      "date": "2020-10-15",
-      "temperature": 28,
-      "humidity": 75,
-      "description": "Partly cloudy"
+    "message": "Success",
+    "weather_data": {
+        "lat": 28.4628,
+        "lon": 77.0895,
+        "data": [
+            {
+                "dt": 1602720000,
+                "temp": 300.28,
+                "clouds": 40,
+                "sunset": 1602764534,
+                "sunrise": 1602723132,
+                "weather": [
+                    {
+                        "id": 721,
+                        "icon": "50n",
+                        "main": "Haze",
+                        "description": "haze"
+                    }
+                ],
+                "humidity": 36,
+                "pressure": 994,
+                "wind_deg": 0,
+                "dew_point": 283.93,
+                "feels_like": 299.91,
+                "visibility": 2200,
+                "wind_speed": 0
+            }
+        ],
+        "timezone": "Asia/Kolkata",
+        "timezone_offset": 19800
     }
-  }
-}
-```
-
-### Save Weather Information
-
-#### Request
-
-```
-POST /weather
-Content-Type: application/json
-
-{
-  "pincode": "411014",
-  "latitude": 18.5204,
-  "longitude": 73.8567,
-  "date": "2020-10-15",
-  "temperature": 28,
-  "humidity": 75,
-  "description": "Partly cloudy"
-}
-```
-
-#### Response
-
-```json
-{
-  "status": "success",
-  "message": "Weather information saved successfully"
 }
 ```
 
 ## Database Schema
 
-The database schema consists of two tables:
+The database schema consists of three tables:
 
-### pincode_location
+### geocoded_data
 
-| Column    | Type       | Description                            |
-| --------- | ---------- | -------------------------------------- |
-| id        | integer    | Primary key                            |
-| pincode   | varchar    | The pincode associated with the location|
-| latitude  | decimal    | The latitude of the pincode's location  |
-| longitude | decimal    | The longitude of the pincode's location |
+| Column     | Type        | Description                            |
+| ---------- | ----------- | -------------------------------------- |
+| latitude   | float       | The latitude of the pincode's location  |
+| longitude  | float       | The longitude of the pincode's location |
+| pin_code   | int         | The pincode associated with the location|
+| id         | bigint      | Primary key                            |
+| name       | varchar(255)| Optional name for the location          |
 
-### weather_information
+### requests_logging
 
-| Column       | Type       | Description                                |
-| ------------ | ---------- | ------------------------------------------ |
-| id           | integer    | Primary key                                |
-| pincode_id   | integer    | Foreign key referencing pincode_location   |
-| date         | date       | The date for which the weather is recorded  |
-| temperature  | decimal    | The temperature on the recorded date        |
-| humidity     | decimal    | The humidity on the recorded date           |
-| description  | varchar    | The weather description on the recorded date|
+| Column     | Type                  | Description                            |
+| ---------- | --------------------- | -------------------------------------- |
+| pin_code   | int                   | The pincode associated with the request |
+| created_at | datetime(6)           | The timestamp of the request            |
+| id         | bigint                | Primary key                            |
+| date       | varchar(255)          | The specific date for the request       |
+
+### unique_weather_record
+
+| Column        | Type         | Description                                |
+| ------------- | ------------ | ------------------------------------------ |
+| pincode       | int          | The pincode associated with the weather record |
+| id            | bigint       | Primary key                                |
+| api_response  | json         | The weather API response in JSON format    |
+| date          | varchar(255) | The specific date of the weather record     |
+
+## Contributing
+
+If you want to contribute to this project, please follow
 
 ## Contributing
 
