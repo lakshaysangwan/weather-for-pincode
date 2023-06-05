@@ -1,4 +1,3 @@
-# weather-for-pincode
 # Weather Information API (Spring Boot)
 
 This project provides a REST API to retrieve weather information for a specific day and pincode. The API allows you to save the pincode's latitude and longitude separately and store the weather information in a relational database (RDBMS) for optimized API calls in the future. It is implemented using Spring Boot framework.
