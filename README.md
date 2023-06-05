@@ -122,10 +122,6 @@ The database schema consists of three tables:
 
 If you want to contribute to this project, please follow
 
-## Contributing
-
-If you want to contribute to this project, please follow the guidelines specified in the CONTRIBUTING.md file. Contributions are welcome!
-
 ## License
 
 This project is licensed under the [MIT License
