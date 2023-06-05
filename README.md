@@ -121,7 +121,3 @@ The database schema consists of three tables:
 ## Contributing
 
 If you want to contribute to this project, please follow
-
-## License
-
-This project is licensed under the [MIT License
