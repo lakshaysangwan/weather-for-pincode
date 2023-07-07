@@ -53,7 +53,7 @@ public class GeocodingService {
                         name = city.getString("formatted");
                         latitude = String.valueOf(city.getJSONObject("geometry").getFloat("lat"));
                         longitude = String.valueOf(city.getJSONObject("geometry").getFloat("lng"));
-                        GeocodedData geocodedData = GeocodedData.builder().pinCode(pincode).name(name).latitude(Float.valueOf(latitude)).longitude(Float.valueOf(longitude)).build();
+                        GeocodedData geocodedData = GeocodedData.builder().pinCode(pincode).name(name).latitude(Float.parseFloat(latitude)).longitude(Float.parseFloat(longitude)).build();
                         repository.save(geocodedData);
                         geocodedDataList.add(geocodedData);
                     }
