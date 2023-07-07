@@ -46,3 +46,4 @@ Thumbs.db
 
 # Ignore generated files (adjust this based on your project structure)
 /generated/
+/env.properties
